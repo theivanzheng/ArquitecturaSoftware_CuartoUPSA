@@ -48,7 +48,7 @@ class Servicio(models.Model):
 class CocheServicio(models.Model):
     coche = models.ForeignKey(Coche, on_delete=models.CASCADE, related_name='coche_servicios')
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE, related_name='coche_servicios')
-    observaciones = models.TextField(blank=True, default='')
+    observaciones = models.TextField(blank=True, null=True, default='')
 
     class Meta:
         verbose_name = 'Servicio de coche'
