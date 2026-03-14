@@ -38,7 +38,7 @@ def servicios_coche(request, coche_id):
 @csrf_exempt
 def registrar_cliente(request):
     if request.method != 'POST':
-        return JsonResponse({'error': 'Método no permitido'}, status=405)
+        return JsonResponse({'error': 'método no permitido'}, status=405)
     try:
         data = json.loads(request.body)
         cliente = Cliente.objects.create(
@@ -56,7 +56,7 @@ def registrar_cliente(request):
 @csrf_exempt
 def registrar_coche(request):
     if request.method != 'POST':
-        return JsonResponse({'error': 'Método no permitido'}, status=405)
+        return JsonResponse({'error': 'método no permitido'}, status=405)
     try:
         data = json.loads(request.body)
         cliente = Cliente.objects.get(pk=data['cliente_id'])
@@ -79,7 +79,7 @@ def registrar_coche(request):
 @csrf_exempt
 def registrar_servicio(request):
     if request.method != 'POST':
-        return JsonResponse({'error': 'Método no permitido'}, status=405)
+        return JsonResponse({'error': 'método no permitido'}, status=405)
     try:
         data = json.loads(request.body)
         servicio = Servicio.objects.create(
@@ -97,7 +97,7 @@ def registrar_servicio(request):
 @csrf_exempt
 def registrar_coche_servicio(request):
     if request.method != 'POST':
-        return JsonResponse({'error': 'Método no permitido'}, status=405)
+        return JsonResponse({'error': 'método no permitido'}, status=405)
     try:
         data = json.loads(request.body)
         coche = Coche.objects.get(pk=data['coche_id'])
