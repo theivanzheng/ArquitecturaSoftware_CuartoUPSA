@@ -88,3 +88,87 @@ def eliminar_cliente(cliente_id: int) -> dict:
         raise HTTPException(status_code=404, detail="Cliente no encontrado")
     del clientes[cliente_id]
     return {"mensaje": f"Cliente {cliente_id} eliminado"}
+
+
+# ---------------------------------------------------------------------------
+# Coches
+# ---------------------------------------------------------------------------
+
+@app.get("/coches/")
+def listar_coches() -> dict:
+    return {"coches": coches}
+
+
+@app.get("/coches/{coche_id}")
+def obtener_coche(coche_id: int) -> dict:
+    if coche_id not in coches:
+        raise HTTPException(status_code=404, detail="Coche no encontrado")
+    return {"coche": coches[coche_id]}
+
+
+@app.post("/coches/", status_code=201)
+def crear_coche(coche: Coche) -> dict:
+    global contador_coches
+    if coche.cliente_id not in clientes:
+        raise HTTPException(status_code=404, detail="El cliente especificado no existe")
+    coches[contador_coches] = coche
+    resultado = {"mensaje": "Coche registrado", "id": contador_coches, "coche": coche}
+    contador_coches += 1
+    return resultado
+
+
+@app.put("/coches/{coche_id}")
+def actualizar_coche(coche_id: int, coche: Coche) -> dict:
+    if coche_id not in coches:
+        raise HTTPException(status_code=404, detail="Coche no encontrado")
+    coches[coche_id] = coche
+    return {"mensaje": f"Coche {coche_id} actualizado", "coche": coche}
+
+
+@app.delete("/coches/{coche_id}")
+def eliminar_coche(coche_id: int) -> dict:
+    if coche_id not in coches:
+        raise HTTPException(status_code=404, detail="Coche no encontrado")
+    del coches[coche_id]
+    return {"mensaje": f"Coche {coche_id} eliminado"}
+
+
+# ---------------------------------------------------------------------------
+# Servicios
+# ---------------------------------------------------------------------------
+
+@app.get("/servicios/")
+def listar_servicios() -> dict:
+    return {"servicios": servicios}
+
+
+@app.get("/servicios/{servicio_id}")
+def obtener_servicio(servicio_id: int) -> dict:
+    if servicio_id not in servicios:
+        raise HTTPException(status_code=404, detail="Servicio no encontrado")
+    return {"servicio": servicios[servicio_id]}
+
+
+@app.post("/servicios/", status_code=201)
+def crear_servicio(servicio: Servicio) -> dict:
+    global contador_servicios
+    servicios[contador_servicios] = servicio
+    resultado = {"mensaje": "Servicio registrado", "id": contador_servicios, "servicio": servicio}
+    contador_servicios += 1
+    return resultado
+
+
+@app.put("/servicios/{servicio_id}")
+def actualizar_servicio(servicio_id: int, servicio: Servicio) -> dict:
+    if servicio_id not in servicios:
+        raise HTTPException(status_code=404, detail="Servicio no encontrado")
+    servicios[servicio_id] = servicio
+    return {"mensaje": f"Servicio {servicio_id} actualizado", "servicio": servicio}
+
+
+@app.delete("/servicios/{servicio_id}")
+def eliminar_servicio(servicio_id: int) -> dict:
+    if servicio_id not in servicios:
+        raise HTTPException(status_code=404, detail="Servicio no encontrado")
+    del servicios[servicio_id]
+    return {"mensaje": f"Servicio {servicio_id} eliminado"}
