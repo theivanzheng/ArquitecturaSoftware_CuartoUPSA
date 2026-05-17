@@ -60,10 +60,11 @@ Misma API pero con persistencia real usando SQLAlchemy async + SQLite. Incluye l
 ```bash
 cd ejercicio2
 pip install -r requirements.txt
+python3 seed.py          # carga los datos de ejemplo
 uvicorn main:app --reload
 ```
 
-Las tablas se crean automáticamente al arrancar el servidor.
+Las tablas se crean automáticamente al arrancar. El script `seed.py` carga 10 clientes con sus coches de alta gama, 6 servicios y 10 asignaciones. Se puede ejecutar varias veces sin duplicados.
 
 ### Endpoints adicionales respecto al Ejercicio 1
 
