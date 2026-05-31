@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Servicios de {{ coche }} — Taller de Coches{% endblock %}
+
+{% block contenido %}
+<h2>Servicios del coche: {{ coche }}</h2>
+
+{% if servicios %}
+<table>
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Precio (€)</th>
+            <th>Fecha</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cs in servicios %}
+        <tr>
+            <td>{{ cs.servicio.descripcion }}</td>
+            <td>{{ cs.servicio.precio }}</td>
+            <td>{{ cs.servicio.fecha }}</td>
+            <td>{{ cs.observaciones|default:"—" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="aviso">Este coche no tiene servicios registrados.</p>
+{% endif %}
+
+<a class="volver" href="/taller/clientes/">← Volver a la lista de clientes</a>
+{% endblock %}

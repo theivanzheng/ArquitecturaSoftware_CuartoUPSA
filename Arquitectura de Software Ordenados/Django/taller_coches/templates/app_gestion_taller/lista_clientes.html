@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Clientes — Taller de Coches{% endblock %}
+
+{% block contenido %}
+<h2>Clientes registrados</h2>
+
+{% if clientes %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Detalle</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.telefono }}</td>
+            <td>{{ cliente.email }}</td>
+            <td><a href="/taller/clientes/{{ cliente.id }}/">Ver</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="aviso">No hay clientes registrados todavía.</p>
+{% endif %}
+{% endblock %}
