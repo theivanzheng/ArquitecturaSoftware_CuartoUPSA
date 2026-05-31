@@ -32,6 +32,15 @@ media/
 
 # FastAPI
 .env
+*.db
+*.db-journal
+
+# Claude Code
+.claude/
+
+# Materiales del profesor (PDFs y HTMLs de teoría)
+*.pdf
+*.html
 
 # IDEs
 .idea/
