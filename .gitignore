@@ -30,11 +30,12 @@ db.sqlite3
 db.sqlite3-journal
 media/
 
-# Bases de datos
+# FastAPI
+.env
 *.db
 *.db-journal
 
-# IDEs y herramientas
+# IDEs y herramientas locales
 .idea/
 .vscode/
 .claude/
