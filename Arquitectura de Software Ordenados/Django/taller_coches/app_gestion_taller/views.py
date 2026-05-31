@@ -1,10 +1,11 @@
 import json
 
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Cliente, Coche, Servicio, CocheServicio
+from .forms import ClienteFormTradicional, ClienteForm, CocheForm, ServicioForm, CocheServicioForm
 
 
 # --- Vistas GET (renderizan plantillas HTML) ---
@@ -115,3 +116,86 @@ def registrar_coche_servicio(request):
         return JsonResponse({'error': 'Datos incompletos. Se requieren: coche_id, servicio_id'}, status=400)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
+
+
+# --- P6: Formulario tradicional (sin modelo) ---
+
+def nuevo_cliente_tradicional(request):
+    if request.method == 'POST':
+        form = ClienteFormTradicional(request.POST)
+        if form.is_valid():
+            Cliente.objects.create(
+                nombre=form.cleaned_data['nombre'],
+                telefono=form.cleaned_data['telefono'],
+                email=form.cleaned_data['email'],
+            )
+            return redirect('lista_clientes')
+    else:
+        form = ClienteFormTradicional()
+    return render(request, 'app_gestion_taller/form_tradicional.html', {
+        'form': form,
+        'titulo': 'Nuevo cliente (formulario tradicional)',
+        'accion': 'Registrar cliente',
+    })
+
+
+# --- P6: ModelForms ---
+
+def nuevo_cliente(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_clientes')
+    else:
+        form = ClienteForm()
+    return render(request, 'app_gestion_taller/form_modelo.html', {
+        'form': form,
+        'titulo': 'Nuevo cliente',
+        'accion': 'Registrar cliente',
+    })
+
+
+def nuevo_coche(request):
+    if request.method == 'POST':
+        form = CocheForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_clientes')
+    else:
+        form = CocheForm()
+    return render(request, 'app_gestion_taller/form_modelo.html', {
+        'form': form,
+        'titulo': 'Nuevo coche',
+        'accion': 'Registrar coche',
+    })
+
+
+def nuevo_servicio(request):
+    if request.method == 'POST':
+        form = ServicioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_clientes')
+    else:
+        form = ServicioForm()
+    return render(request, 'app_gestion_taller/form_modelo.html', {
+        'form': form,
+        'titulo': 'Nuevo servicio',
+        'accion': 'Registrar servicio',
+    })
+
+
+def nuevo_coche_servicio(request):
+    if request.method == 'POST':
+        form = CocheServicioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_clientes')
+    else:
+        form = CocheServicioForm()
+    return render(request, 'app_gestion_taller/form_modelo.html', {
+        'form': form,
+        'titulo': 'Asignar servicio a coche',
+        'accion': 'Asignar servicio',
+    })

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} — Taller de Coches{% endblock %}
+
+{% block contenido %}
+<h2>{{ titulo }}</h2>
+<p style="margin-bottom:1rem;color:#666;">Formulario basado en modelo (ModelForm).</p>
+
+<form method="post" style="background:white;padding:1.5rem;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.1);max-width:480px;">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="aviso" style="margin-bottom:1rem;">
+        {% for error in form.non_field_errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for field in form %}
+    <div style="margin-bottom:1rem;">
+        <label for="{{ field.id_for_label }}" style="display:block;font-weight:bold;margin-bottom:.3rem;">
+            {{ field.label }}{% if field.field.required %} *{% endif %}
+        </label>
+        {{ field }}
+        {% if field.errors %}
+        <p style="color:#c0392b;font-size:.85rem;margin-top:.25rem;">{{ field.errors.0 }}</p>
+        {% endif %}
+        {% if field.help_text %}
+        <p style="color:#888;font-size:.8rem;margin-top:.2rem;">{{ field.help_text }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" style="background:#1a1a2e;color:white;border:none;padding:.6rem 1.4rem;border-radius:4px;cursor:pointer;">
+        {{ accion }}
+    </button>
+    <a href="/taller/clientes/" style="margin-left:1rem;color:#555;">Cancelar</a>
+</form>
+{% endblock %}
