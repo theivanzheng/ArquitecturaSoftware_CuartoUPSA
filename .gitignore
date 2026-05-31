@@ -17,7 +17,7 @@ develop-eggs/
 lib/
 lib64/
 
-# Virtual environments
+# Entornos virtuales
 venv/
 env/
 .env
@@ -30,21 +30,14 @@ db.sqlite3
 db.sqlite3-journal
 media/
 
-# FastAPI
-.env
+# Bases de datos
 *.db
 *.db-journal
 
-# Claude Code
-.claude/
-
-# Materiales del profesor (PDFs y HTMLs de teoría)
-*.pdf
-*.html
-
-# IDEs
+# IDEs y herramientas
 .idea/
 .vscode/
+.claude/
 *.swp
 *.swo
 
@@ -53,5 +46,6 @@ media/
 .AppleDouble
 .LSOverride
 
-# Migrations (keep __init__.py but ignore auto-generated)
-# We keep migrations for traceability
+# Materiales de teoría
+*.pdf
+*.html
