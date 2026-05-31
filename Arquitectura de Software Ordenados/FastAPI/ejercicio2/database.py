@@ -1,9 +1,20 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = "sqlite+aiosqlite:///./taller.db"
+# SQLite asíncrono con aiosqlite
+# El archivo taller.db se crea automáticamente en la carpeta del proyecto
+RUTA_BD = "sqlite+aiosqlite:///./taller.db"
 
-engine = create_async_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+# echo=False en producción para no saturar los logs
+motor = create_async_engine(RUTA_BD, echo=True, future=True)
+
+# expire_on_commit=False evita que los objetos queden inaccesibles
+# después de hacer commit (importante con async)
+SessionLocal = sessionmaker(
+    bind=motor,
+    class_=AsyncSession,
+    expire_on_commit=False,
+    autoflush=False,
+)
+
 Base = declarative_base()
