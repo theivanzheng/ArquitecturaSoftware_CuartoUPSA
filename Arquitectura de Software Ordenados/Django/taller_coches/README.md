@@ -63,10 +63,22 @@ python3 manage.py createsuperuser
 
 Entra en `http://127.0.0.1:8000/admin/` con el usuario que acabas de crear y añade, en este orden:
 
-1. Un **cliente** — por ejemplo: *Ana Martínez, 612 345 678, ana@gmail.com*
+1. Un **cliente** — por ejemplo: *Iván Zheng, 612 345 678, ivan@tallercoches.com*
 2. Un **coche** asignado a ese cliente — por ejemplo: *Mercedes C220, matrícula 4821 PMV, año 2019*
 3. Un **servicio** — por ejemplo: *Revisión general, 85.00 €, fecha de hoy*
 4. Un **CocheServicio** que enlace el Mercedes con la revisión
+
+Puedes meter tantos clientes como quieras para que la lista se vea bien. Algunos ejemplos:
+
+| Nombre | Teléfono | Email |
+|--------|----------|-------|
+| Iván Zheng | 612 345 678 | ivan@tallercoches.com |
+| Javier Pozo González | 633 112 244 | javier.pozo@gmail.com |
+| Pablo Martín Gil | 655 778 899 | pablo.martin@hotmail.com |
+| Alfredo Sánchez Fuentes | 677 001 122 | alfredo.sf@outlook.com |
+| Julio San Juan Santander | 699 334 556 | julio.sanjuan@gmail.com |
+| Ricardo Trujillo Antiveros | 611 990 334 | r.trujillo@icloud.com |
+| Manuel Fas | 644 223 445 | manuelfas@gmail.com |
 
 Una vez hecho eso, estas páginas ya muestran datos reales:
 
@@ -75,7 +87,7 @@ http://127.0.0.1:8000/taller/clientes/
 → Tabla con todos los clientes del taller
 
 http://127.0.0.1:8000/taller/clientes/1/
-→ Ficha de Ana Martínez con su Mercedes
+→ Ficha de Iván Zheng con su Mercedes C220
 
 http://127.0.0.1:8000/taller/coches/1/servicios/
 → La revisión general del Mercedes C220
@@ -88,12 +100,12 @@ http://127.0.0.1:8000/taller/coches/1/servicios/
 Si prefieres añadir datos sin usar el admin, puedes hacerlo con peticiones POST. Abre una terminal con el servidor corriendo y ejecuta:
 
 ```bash
-# Añadir un cliente nuevo
+# Añadir a Ricardo Trujillo Antiveros
 curl -X POST http://127.0.0.1:8000/taller/clientes/nuevo/ \
   -H "Content-Type: application/json" \
-  -d '{"nombre": "Pedro Ruiz", "telefono": "699887766", "email": "pedro@taller.com"}'
+  -d '{"nombre": "Ricardo Trujillo Antiveros", "telefono": "611990334", "email": "r.trujillo@icloud.com"}'
 
-# Añadir un coche para ese cliente (usa el cliente_id que te devuelve el paso anterior)
+# Añadir su coche (usa el cliente_id que te devuelve el paso anterior)
 curl -X POST http://127.0.0.1:8000/taller/coches/nuevo/ \
   -H "Content-Type: application/json" \
   -d '{"matricula": "7732 BCD", "marca": "BMW", "modelo": "Serie 3", "anio": 2021, "cliente_id": 1}'
@@ -103,7 +115,7 @@ curl -X POST http://127.0.0.1:8000/taller/servicios/nuevo/ \
   -H "Content-Type: application/json" \
   -d '{"descripcion": "Cambio de frenos", "precio": "120.00", "fecha": "2026-05-31"}'
 
-# Asignar ese servicio al coche
+# Asignar ese servicio al coche de Ricardo
 curl -X POST http://127.0.0.1:8000/taller/coche-servicio/nuevo/ \
   -H "Content-Type: application/json" \
   -d '{"coche_id": 1, "servicio_id": 1, "observaciones": "Pastillas delantera y trasera"}'
