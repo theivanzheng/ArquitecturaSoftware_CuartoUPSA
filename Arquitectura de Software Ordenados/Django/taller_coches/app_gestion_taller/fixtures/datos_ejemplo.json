@@ -47,58 +47,58 @@
   {
     "model": "app_gestion_taller.cliente",
     "pk": 10,
-    "fields": { "nombre": "Ana Herrero García", "telefono": "688990011", "email": "ana.herrero@gmail.com" }
+    "fields": { "nombre": "Anna Herrero García", "telefono": "688990011", "email": "anna.herrero@gmail.com" }
   },
 
   {
     "model": "app_gestion_taller.coche",
     "pk": 1,
-    "fields": { "matricula": "4821PMV", "marca": "Mercedes", "modelo": "C220", "anio": 2019, "cliente": 1 }
+    "fields": { "matricula": "4821PMV", "marca": "Porsche", "modelo": "Cayenne Turbo S", "anio": 2023, "cliente": 1 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 2,
-    "fields": { "matricula": "7732BCD", "marca": "BMW", "modelo": "Serie 3", "anio": 2021, "cliente": 2 }
+    "fields": { "matricula": "7732BCD", "marca": "BMW", "modelo": "M3 Competition", "anio": 2022, "cliente": 2 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 3,
-    "fields": { "matricula": "3345GHJ", "marca": "Volkswagen", "modelo": "Golf", "anio": 2018, "cliente": 3 }
+    "fields": { "matricula": "3345GHJ", "marca": "Audi", "modelo": "R8 V10 Performance", "anio": 2021, "cliente": 3 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 4,
-    "fields": { "matricula": "5567KLM", "marca": "Audi", "modelo": "A4", "anio": 2020, "cliente": 4 }
+    "fields": { "matricula": "5567KLM", "marca": "Mercedes", "modelo": "AMG GT 63 S", "anio": 2022, "cliente": 4 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 5,
-    "fields": { "matricula": "1123NOP", "marca": "Toyota", "modelo": "Corolla", "anio": 2022, "cliente": 5 }
+    "fields": { "matricula": "1123NOP", "marca": "Lamborghini", "modelo": "Urus S", "anio": 2023, "cliente": 5 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 6,
-    "fields": { "matricula": "8890QRS", "marca": "Ford", "modelo": "Focus", "anio": 2017, "cliente": 6 }
+    "fields": { "matricula": "8890QRS", "marca": "Ferrari", "modelo": "Roma", "anio": 2022, "cliente": 6 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 7,
-    "fields": { "matricula": "2234TUV", "marca": "Seat", "modelo": "León", "anio": 2019, "cliente": 7 }
+    "fields": { "matricula": "2234TUV", "marca": "Maserati", "modelo": "Ghibli Trofeo", "anio": 2021, "cliente": 7 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 8,
-    "fields": { "matricula": "6678WXY", "marca": "Renault", "modelo": "Mégane", "anio": 2020, "cliente": 8 }
+    "fields": { "matricula": "6678WXY", "marca": "Porsche", "modelo": "911 Carrera 4S", "anio": 2023, "cliente": 8 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 9,
-    "fields": { "matricula": "9901ZAB", "marca": "Peugeot", "modelo": "308", "anio": 2016, "cliente": 9 }
+    "fields": { "matricula": "9901ZAB", "marca": "Bentley", "modelo": "Continental GT Speed", "anio": 2022, "cliente": 9 }
   },
   {
     "model": "app_gestion_taller.coche",
     "pk": 10,
-    "fields": { "matricula": "4456CDE", "marca": "Citroën", "modelo": "C3", "anio": 2021, "cliente": 10 }
+    "fields": { "matricula": "4456CDE", "marca": "Lexus", "modelo": "LC 500", "anio": 2023, "cliente": 10 }
   },
 
   {
@@ -140,7 +140,7 @@
   {
     "model": "app_gestion_taller.cocheservicio",
     "pk": 2,
-    "fields": { "coche": 1, "servicio": 2, "observaciones": "Aceite 5W40 sintético" }
+    "fields": { "coche": 1, "servicio": 2, "observaciones": "Aceite 5W40 sintético Porsche original" }
   },
   {
     "model": "app_gestion_taller.cocheservicio",
@@ -155,12 +155,12 @@
   {
     "model": "app_gestion_taller.cocheservicio",
     "pk": 5,
-    "fields": { "coche": 4, "servicio": 4, "observaciones": "Neumáticos Michelin 205/55 R16" }
+    "fields": { "coche": 4, "servicio": 4, "observaciones": "Neumáticos Pirelli P Zero 265/35 R20" }
   },
   {
     "model": "app_gestion_taller.cocheservicio",
     "pk": 6,
-    "fields": { "coche": 5, "servicio": 2, "observaciones": "Aceite 0W20, filtro incluido" }
+    "fields": { "coche": 5, "servicio": 2, "observaciones": "Aceite Lamborghini 0W40, filtro original" }
   },
   {
     "model": "app_gestion_taller.cocheservicio",
@@ -175,7 +175,7 @@
   {
     "model": "app_gestion_taller.cocheservicio",
     "pk": 9,
-    "fields": { "coche": 8, "servicio": 3, "observaciones": "Solo pastillas delanteras" }
+    "fields": { "coche": 8, "servicio": 3, "observaciones": "Solo pastillas delanteras, traseras en buen estado" }
   },
   {
     "model": "app_gestion_taller.cocheservicio",
