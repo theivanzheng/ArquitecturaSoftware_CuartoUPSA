@@ -10,10 +10,11 @@ Desde la carpeta `Django/taller_coches/`:
 
 ```bash
 python3 manage.py migrate
+python3 manage.py loaddata app_gestion_taller/fixtures/datos_ejemplo.json
 python3 manage.py runserver
 ```
 
-Abre el navegador en `http://127.0.0.1:8000/` y ya está.
+Abre el navegador en `http://127.0.0.1:8000/` y ya está con datos de ejemplo cargados.
 
 ---
 
