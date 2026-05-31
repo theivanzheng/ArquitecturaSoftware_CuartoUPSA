@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Taller de Coches{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; }
+        header { background: #1a1a2e; color: white; padding: 1rem 2rem; }
+        header h1 { font-size: 1.5rem; }
+        nav { background: #16213e; padding: 0.5rem 2rem; }
+        nav a { color: #e0e0e0; text-decoration: none; margin-right: 1.5rem; font-size: 0.95rem; }
+        nav a:hover { color: #fff; text-decoration: underline; }
+        main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+        h2 { margin-bottom: 1rem; color: #1a1a2e; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+        th { background: #1a1a2e; color: white; padding: 0.75rem 1rem; text-align: left; }
+        td { padding: 0.65rem 1rem; border-bottom: 1px solid #eee; }
+        tr:last-child td { border-bottom: none; }
+        .aviso { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 0.75rem 1rem; margin-top: 1rem; }
+        .volver { display: inline-block; margin-top: 1.5rem; color: #1a1a2e; text-decoration: none; }
+        .volver:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 1.5rem; color: #888; font-size: 0.85rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔧 Taller de Coches</h1>
+    </header>
+    <nav>
+        <a href="/taller/clientes/">Clientes</a>
+        <a href="/">Inicio</a>
+    </nav>
+    <main>
+        {% block contenido %}{% endblock %}
+    </main>
+    <footer>
+        &copy; 2026 Taller de Coches — Arquitectura del Software
+    </footer>
+</body>
+</html>

@@ -1,52 +1,34 @@
 import json
 
 from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Cliente, Coche, Servicio, CocheServicio
 
 
-# --- Vistas GET ---
+# --- Vistas GET (renderizan plantillas HTML) ---
 
 def lista_clientes(request):
-    clientes = list(Cliente.objects.values('id', 'nombre', 'telefono', 'email'))
-    return JsonResponse({'clientes': clientes})
+    clientes = Cliente.objects.all()
+    return render(request, 'app_gestion_taller/lista_clientes.html', {'clientes': clientes})
 
 
 def detalle_cliente(request, cliente_id):
-    try:
-        cliente = Cliente.objects.get(pk=cliente_id)
-    except Cliente.DoesNotExist:
-        return JsonResponse({'error': 'Cliente no encontrado'}, status=404)
-
-    coches = list(cliente.coches.values('id', 'matricula', 'marca', 'modelo', 'anio'))
-    return JsonResponse({
-        'cliente': {
-            'id': cliente.id,
-            'nombre': cliente.nombre,
-            'telefono': cliente.telefono,
-            'email': cliente.email,
-        },
+    cliente = get_object_or_404(Cliente, pk=cliente_id)
+    coches = cliente.coches.all()
+    return render(request, 'app_gestion_taller/detalle_cliente.html', {
+        'cliente': cliente,
         'coches': coches,
-        'tiene_coches': len(coches) > 0,
     })
 
 
 def servicios_coche(request, coche_id):
-    try:
-        coche = Coche.objects.get(pk=coche_id)
-    except Coche.DoesNotExist:
-        return JsonResponse({'error': 'Coche no encontrado'}, status=404)
-
-    servicios = list(
-        CocheServicio.objects
-        .filter(coche=coche)
-        .values('servicio__descripcion', 'servicio__precio', 'servicio__fecha', 'observaciones')
-    )
-    return JsonResponse({
-        'coche': str(coche),
+    coche = get_object_or_404(Coche, pk=coche_id)
+    servicios = CocheServicio.objects.filter(coche=coche).select_related('servicio')
+    return render(request, 'app_gestion_taller/servicios_coche.html', {
+        'coche': coche,
         'servicios': servicios,
-        'tiene_servicios': len(servicios) > 0,
     })
 
 
