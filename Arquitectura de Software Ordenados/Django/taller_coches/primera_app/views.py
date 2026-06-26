@@ -4,9 +4,6 @@ import uuid as uuid_lib
 
 from django.http import HttpResponse, JsonResponse
 
-
-# --- P1: Vistas básicas ---
-
 def bienvenida(request):
     return HttpResponse("<h1>Bienvenido al Taller de Coches</h1><p>Tu taller de confianza.</p>")
 
@@ -17,10 +14,6 @@ def acerca_de(request):
 
 def contacto(request):
     return HttpResponse("<h1>Contacto</h1><p>Llámanos al 600 000 000 o escríbenos a info@tallercoches.com</p>")
-
-
-# --- P2: URLs con parámetros ---
-
 def saludo(request, nombre):
     return HttpResponse(f"<h1>Hola, {nombre}!</h1>")
 
@@ -85,10 +78,6 @@ def validar_datos(request):
         return JsonResponse({'error': errores}, status=400)
 
     return JsonResponse({'mensaje': 'Todos los datos son válidos'})
-
-
-# --- P2: Vistas que solo aceptan un método HTTP ---
-
 def solo_get(request):
     if request.method == 'GET':
         return JsonResponse({'mensaje': 'Solicitud GET recibida correctamente'})

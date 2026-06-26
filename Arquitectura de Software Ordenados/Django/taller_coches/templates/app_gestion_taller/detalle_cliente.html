@@ -30,7 +30,7 @@
             <td>{{ coche.marca }}</td>
             <td>{{ coche.modelo }}</td>
             <td>{{ coche.anio }}</td>
-            <td><a href="/taller/coches/{{ coche.id }}/servicios/">Ver servicios</a></td>
+            <td><a href="{% url 'servicios_coche' coche.id %}">Ver servicios</a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -39,5 +39,5 @@
 <p class="aviso">Este cliente no tiene coches registrados.</p>
 {% endif %}
 
-<a class="volver" href="/taller/clientes/">← Volver a la lista de clientes</a>
+<a class="volver" href="{% url 'lista_clientes' %}">← Volver a la lista de clientes</a>
 {% endblock %}

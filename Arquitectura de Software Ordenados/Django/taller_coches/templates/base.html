@@ -29,8 +29,10 @@
         <h1>🔧 Taller de Coches</h1>
     </header>
     <nav>
-        <a href="/taller/clientes/">Ver clientes</a>
-        <a href="/">Inicio</a>
+        <a href="{% url 'bienvenida' %}">Inicio</a>
+        <a href="{% url 'lista_clientes' %}">Ver clientes</a>
+        <a href="{% url 'nuevo_cliente' %}">Nuevo cliente</a>
+        <a href="{% url 'nuevo_coche' %}">Nuevo coche</a>
     </nav>
     <main>
         {% block contenido %}{% endblock %}

@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for cs in servicios %}
+        {% for cs in coche_servicios %}
         <tr>
             <td>{{ cs.servicio.descripcion }}</td>
             <td>{{ cs.servicio.precio }}</td>
@@ -30,5 +30,5 @@
 <p class="aviso">Este coche no tiene servicios registrados.</p>
 {% endif %}
 
-<a class="volver" href="/taller/clientes/">← Volver a la lista de clientes</a>
+<a class="volver" href="{% url 'lista_clientes' %}">← Volver a la lista de clientes</a>
 {% endblock %}

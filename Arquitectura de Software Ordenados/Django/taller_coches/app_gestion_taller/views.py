@@ -7,9 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Cliente, Coche, Servicio, CocheServicio
 from .forms import ClienteFormTradicional, ClienteForm, CocheForm, ServicioForm, CocheServicioForm
 
-
-# --- Vistas GET (renderizan plantillas HTML) ---
-
 def lista_clientes(request):
     clientes = Cliente.objects.all()
     return render(request, 'app_gestion_taller/lista_clientes.html', {'clientes': clientes})
@@ -26,14 +23,11 @@ def detalle_cliente(request, cliente_id):
 
 def servicios_coche(request, coche_id):
     coche = get_object_or_404(Coche, pk=coche_id)
-    servicios = CocheServicio.objects.filter(coche=coche).select_related('servicio')
+    coche_servicios = CocheServicio.objects.filter(coche=coche).select_related('servicio')
     return render(request, 'app_gestion_taller/servicios_coche.html', {
         'coche': coche,
-        'servicios': servicios,
+        'coche_servicios': coche_servicios,
     })
-
-
-# --- Vistas POST ---
 
 @csrf_exempt
 def registrar_cliente(request):
@@ -49,8 +43,8 @@ def registrar_cliente(request):
         return JsonResponse({'mensaje': 'Cliente registrado con éxito', 'cliente_id': cliente.id}, status=201)
     except KeyError:
         return JsonResponse({'error': 'Datos incompletos. Se requieren: nombre, telefono, email'}, status=400)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+    except Exception as error:
+        return JsonResponse({'error': str(error)}, status=400)
 
 
 @csrf_exempt
@@ -72,8 +66,8 @@ def registrar_coche(request):
         return JsonResponse({'error': 'Cliente no encontrado'}, status=404)
     except KeyError:
         return JsonResponse({'error': 'Datos incompletos. Se requieren: matricula, marca, modelo, anio, cliente_id'}, status=400)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+    except Exception as error:
+        return JsonResponse({'error': str(error)}, status=400)
 
 
 @csrf_exempt
@@ -90,8 +84,8 @@ def registrar_servicio(request):
         return JsonResponse({'mensaje': 'Servicio registrado con éxito', 'servicio_id': servicio.id}, status=201)
     except KeyError:
         return JsonResponse({'error': 'Datos incompletos. Se requieren: descripcion, precio, fecha'}, status=400)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+    except Exception as error:
+        return JsonResponse({'error': str(error)}, status=400)
 
 
 @csrf_exempt
@@ -114,11 +108,9 @@ def registrar_coche_servicio(request):
         return JsonResponse({'error': 'Coche o servicio no encontrado'}, status=404)
     except KeyError:
         return JsonResponse({'error': 'Datos incompletos. Se requieren: coche_id, servicio_id'}, status=400)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=400)
+    except Exception as error:
+        return JsonResponse({'error': str(error)}, status=400)
 
-
-# --- P6: Formulario tradicional (sin modelo) ---
 
 def nuevo_cliente_tradicional(request):
     if request.method == 'POST':
@@ -138,8 +130,6 @@ def nuevo_cliente_tradicional(request):
         'accion': 'Registrar cliente',
     })
 
-
-# --- P6: ModelForms ---
 
 def nuevo_cliente(request):
     if request.method == 'POST':

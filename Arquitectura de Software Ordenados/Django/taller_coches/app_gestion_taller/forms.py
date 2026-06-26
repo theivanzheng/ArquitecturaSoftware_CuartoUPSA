@@ -2,8 +2,6 @@ from django import forms
 from .models import Cliente, Coche, Servicio, CocheServicio
 
 
-# --- Formularios tradicionales (sin modelo) ---
-
 class ClienteFormTradicional(forms.Form):
     nombre = forms.CharField(
         max_length=100,
@@ -32,8 +30,6 @@ class ClienteFormTradicional(forms.Form):
             raise forms.ValidationError('Ya existe un cliente con ese email.')
         return email
 
-
-# --- ModelForms ---
 
 class ClienteForm(forms.ModelForm):
     class Meta:
